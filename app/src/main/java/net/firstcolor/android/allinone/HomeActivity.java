@@ -8,40 +8,27 @@ import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class HomeActivity extends AppCompatActivity {
-
-    @BindView(R.id.btn_room_db)
-    Button btnRoomDB;
-    @BindView(R.id.btn_async_task)
-    Button btnAsyncTask;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
-
-        btnRoomDB.setOnClickListener(btnRoomDBListener());
-        btnAsyncTask.setOnClickListener(btnAsyncTaskListener());
     }
 
-    private View.OnClickListener btnRoomDBListener() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(HomeActivity.this, "will open room database example", Toast.LENGTH_LONG).show();
-            }
-        };
+
+    @OnClick({R.id.btn_room_db})
+    public void roomDBBtnClicked(View button){
+        Toast.makeText(HomeActivity.this, "will open room database example", Toast.LENGTH_LONG).show();
     }
 
-    private View.OnClickListener btnAsyncTaskListener() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(HomeActivity.this, "will open async task example", Toast.LENGTH_LONG).show();
-            }
-        };
+    @OnClick({R.id.btn_async_task})
+    public void asyncTaskBtnClicked(View button){
+        Toast.makeText(HomeActivity.this, "will open async task example", Toast.LENGTH_LONG).show();
     }
+
 
 }
