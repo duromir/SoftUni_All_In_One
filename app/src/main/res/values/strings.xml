@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">All In One</string>
+    <string name="room_example_btn">Room database</string>
+    <string name="async_task_example_btn">Async Task</string>
 </resources>
