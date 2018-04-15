@@ -1,5 +1,6 @@
 package net.firstcolor.android.allinone;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +12,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class HomeActivity extends AppCompatActivity {
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,10 +20,17 @@ public class HomeActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
+    @OnClick({R.id.btn_recycler_view})
+    public void btnRecyclerViewClicked(View Button){
+        Toast.makeText(HomeActivity.this, "will open recycler view example", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, RecyclerViewActivity.class);
+        startActivity(intent);
+    }
 
     @OnClick({R.id.btn_room_db})
     public void roomDBBtnClicked(View button){
         Toast.makeText(HomeActivity.this, "will open room database example", Toast.LENGTH_LONG).show();
+        //TODO: Open activity
     }
 
     @OnClick({R.id.btn_async_task})
