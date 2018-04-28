@@ -10,9 +10,13 @@ import net.firstcolor.android.allinone.data.Article;
 
 import java.util.List;
 
-public class ArticleAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
+public class ArticlesAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
 
     private List<Article> articles;
+
+    public ArticlesAdapter(List<Article> articlesList){
+        articles = articlesList;
+    }
 
     @Override
     public ArticleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -25,7 +29,9 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
     @Override
     public void onBindViewHolder(ArticleViewHolder holder, int position) {
         Article article = articles.get(position);
-        holder.setArticle(article);
+        if(article != null) {
+            holder.setArticle(article);
+        }
     }
 
     @Override

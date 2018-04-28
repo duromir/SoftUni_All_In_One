@@ -1,11 +1,22 @@
 package net.firstcolor.android.allinone;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import net.firstcolor.android.allinone.data.AppDatabase;
+import net.firstcolor.android.allinone.data.Article;
+import net.firstcolor.android.allinone.data.DatabaseFactory;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,9 +33,10 @@ public class HomeActivity extends AppCompatActivity {
 
     @OnClick({R.id.btn_recycler_view})
     public void btnRecyclerViewClicked(View Button){
-        Toast.makeText(HomeActivity.this, "will open recycler view example", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(this, RecyclerViewActivity.class);
-        startActivity(intent);
+//        Toast.makeText(HomeActivity.this, "will open recycler view example", Toast.LENGTH_LONG).show();
+//        Intent intent = new Intent(this, RecyclerViewActivity.class);
+//        startActivity(intent);
+        (new ReadArticlesTask(this)).execute();
     }
 
     @OnClick({R.id.btn_room_db})
@@ -38,5 +50,28 @@ public class HomeActivity extends AppCompatActivity {
         Toast.makeText(HomeActivity.this, "will open async task example", Toast.LENGTH_LONG).show();
     }
 
+    protected void openRecyclerActivity(List<Article> articles){
+        Intent intent = new Intent(this, RecyclerViewActivity.class);
+        intent.putExtra("articles", (Serializable) articles);
+        startActivity(intent);
+    }
 
+    private static class ReadArticlesTask extends AsyncTask<Void, Void, List<Article>> {
+
+        private HomeActivity activity;
+
+        ReadArticlesTask(HomeActivity activity){
+            this.activity = activity;
+        }
+
+        @Override
+        protected List<Article> doInBackground(Void... voids) {
+            return DatabaseFactory.getInstance(activity).articleDao().getAll();
+        }
+
+        @Override
+        protected void onPostExecute(List<Article> articles) {
+            activity.openRecyclerActivity(articles);
+        }
+    }
 }

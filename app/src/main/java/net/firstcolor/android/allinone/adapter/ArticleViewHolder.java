@@ -23,8 +23,9 @@ public class ArticleViewHolder<Article> extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
+
     public void setArticle(Article article) {
         this.article = article;
+        //txtArticleTitle.setText();
     }
-
 }
