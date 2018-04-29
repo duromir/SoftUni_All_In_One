@@ -1,6 +1,7 @@
 package net.firstcolor.android.allinone.data;
 
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
 import java.util.List;
@@ -10,4 +11,8 @@ public interface ArticleDao {
 
     @Query("SELECT * FROM articles")
     List<Article> getAll();
+
+    @Insert
+    void insertArticle(Article article);
+
 }

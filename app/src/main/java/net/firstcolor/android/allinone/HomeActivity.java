@@ -33,10 +33,9 @@ public class HomeActivity extends AppCompatActivity {
 
     @OnClick({R.id.btn_recycler_view})
     public void btnRecyclerViewClicked(View Button){
-//        Toast.makeText(HomeActivity.this, "will open recycler view example", Toast.LENGTH_LONG).show();
-//        Intent intent = new Intent(this, RecyclerViewActivity.class);
-//        startActivity(intent);
-        (new ReadArticlesTask(this)).execute();
+        Toast.makeText(HomeActivity.this, "will open recycler view example", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, RecyclerViewActivity.class);
+        startActivity(intent);
     }
 
     @OnClick({R.id.btn_room_db})
@@ -48,30 +47,5 @@ public class HomeActivity extends AppCompatActivity {
     @OnClick({R.id.btn_async_task})
     public void asyncTaskBtnClicked(View button){
         Toast.makeText(HomeActivity.this, "will open async task example", Toast.LENGTH_LONG).show();
-    }
-
-    protected void openRecyclerActivity(List<Article> articles){
-        Intent intent = new Intent(this, RecyclerViewActivity.class);
-        intent.putExtra("articles", (Serializable) articles);
-        startActivity(intent);
-    }
-
-    private static class ReadArticlesTask extends AsyncTask<Void, Void, List<Article>> {
-
-        private HomeActivity activity;
-
-        ReadArticlesTask(HomeActivity activity){
-            this.activity = activity;
-        }
-
-        @Override
-        protected List<Article> doInBackground(Void... voids) {
-            return DatabaseFactory.getInstance(activity).articleDao().getAll();
-        }
-
-        @Override
-        protected void onPostExecute(List<Article> articles) {
-            activity.openRecyclerActivity(articles);
-        }
     }
 }

@@ -4,4 +4,6 @@
     <string name="async_task_example_btn">Async Task</string>
     <string name="recycler_view_btn">Recycler view</string>
     <string name="title_activity_recycler_view">RecyclerViewActivity</string>
+    <string name="article_title">Article title</string>
+    <string name="article_text">Article text</string>
 </resources>

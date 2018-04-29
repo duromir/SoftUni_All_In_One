@@ -3,13 +3,12 @@ package net.firstcolor.android.allinone.adapter;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
-
 import net.firstcolor.android.allinone.R;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import net.firstcolor.android.allinone.data.Article;
 
-public class ArticleViewHolder<Article> extends RecyclerView.ViewHolder {
+public class ArticleViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.article_title)
     TextView txtArticleTitle;
@@ -26,6 +25,7 @@ public class ArticleViewHolder<Article> extends RecyclerView.ViewHolder {
 
     public void setArticle(Article article) {
         this.article = article;
-        //txtArticleTitle.setText();
+        txtArticleTitle.setText(article.getTitle());
+        getTxtArticleText.setText(article.getText());
     }
 }

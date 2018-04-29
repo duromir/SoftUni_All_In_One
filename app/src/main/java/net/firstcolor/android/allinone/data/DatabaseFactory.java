@@ -9,7 +9,9 @@ public class DatabaseFactory {
 
     public static AppDatabase getInstance(Context context){
         if(db == null){
-            db = Room.databaseBuilder(context, AppDatabase.class, "articles").build();
+            db = Room.databaseBuilder(context, AppDatabase.class, "articles")
+                    .fallbackToDestructiveMigration()
+                    .build();
         }
         return db;
     }

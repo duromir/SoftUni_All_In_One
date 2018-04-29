@@ -25,6 +25,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="net.firstcolor.android.allinone.HomeActivity" />
         </activity>
+        <activity android:name=".AddArticleActivity"></activity>
     </application>
 
 </manifest>

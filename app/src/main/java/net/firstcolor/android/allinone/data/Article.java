@@ -7,7 +7,7 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity(tableName = "articles")
 public class Article {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
 
     @ColumnInfo(name="title")
@@ -16,6 +16,10 @@ public class Article {
     @ColumnInfo(name="text")
     private String text;
 
+    public Article(String title, String text){
+        this.title = title;
+        this.text = text;
+    }
 
     public int getId() {
         return id;
